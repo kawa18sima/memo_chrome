@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <script src="js/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="viewFlag">
+        <h4>タイトル</h4>
+        <input type="text" v-model="display.title">
+        <p>1000文字まで</p>
+        <textarea v-model="display.text" size="1000" class="memo"></textarea>
+        <button v-on:click="saveMemo">保存</button>
+      </div>
+      <div v-else>
+        <h2>メモ一覧</h2>
+        <table>
+          <tbody>
+            <tr v-for="memo in memos">
+              <td class="title" v-on:click="selectMemo(memo)">{{memo.title}}</td>
+              <td><button v-on:click="deleteMemo(memo.id)">削除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <button v-on:click="newMemo" class="create">新規作成</button>
+      </div>
+    </div>
+    <script src="js/popup.js"></script>
+  </body>
+</html>
